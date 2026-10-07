@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Tanush — Game Designer Portfolio</title>
+  <meta name="description" content="Game design portfolio of Deep Tanush showcasing UI (Unwanted Internship) and 3D puzzle systems.">
+  <meta name="theme-color" content="#07090e">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Favicon / Minimal Game Diamond SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%2307090e'/><polygon points='50,15 85,50 50,85 15,50' fill='%23f59e0b'/><circle cx='50' cy='50' r='10' fill='%2307090e'/></svg>">
+</head>
+<body>
+
+  <!-- Ambient Game Atmosphere Canvas (Warm Floating Embers, Lantern Glow, Level Grid) -->
+  <canvas id="viewport-canvas"></canvas>
+
+  <!-- Cinematic Vignette & Ambient Darkness -->
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- Game HUD Top Navigation Bar -->
+  <header class="game-hud-header" role="banner">
+    <div class="hud-top-bar">
+      <!-- Player / Designer Profile Tag -->
+      <div class="game-profile-pill">
+        <span class="game-gem-pip">◆</span>
+        <span class="game-profile-name" data-bind="designerName">DEEP TANUSH</span>
+        <span class="hud-divider">/</span>
+        <span class="game-role-badge">GAME DESIGNER</span>
+        <span class="game-status-dot" title="Available for Roles"></span>
+      </div>
+
+      <!-- Main Game Navigation: WORKS | ABOUT | RESUME | CONTACT -->
+      <nav class="game-main-nav" role="navigation" aria-label="Game Navigation Menu">
+        <button class="nav-tab-btn active" data-tab="works" aria-label="View selected works">
+          <span class="nav-indicator">◆</span>
+          <span>WORKS</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="about" aria-label="View designer profile">
+          <span class="nav-indicator">◆</span>
+          <span>ABOUT</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="resume" aria-label="View professional resume">
+          <span class="nav-indicator">◆</span>
+          <span>RESUME</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="contact" aria-label="View contact information">
+          <span class="nav-indicator">◆</span>
+          <span>CONTACT</span>
+        </button>
+      </nav>
+
+      <!-- System Controls: Sound & HUD Wireframe Mode -->
+      <div class="hud-controls">
+        <button class="game-btn-icon" id="audio-toggle-btn" title="Toggle UI Sound Effects" aria-label="Toggle UI Sound Effects">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+          <span class="btn-text">SFX: ON</span>
+        </button>
+        <button class="game-btn-icon" id="debug-toggle-btn" title="Toggle Game HUD Blueprint Overlays" aria-label="Toggle Game HUD Mode">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="3 3"/>
+            <path d="M3 12h18M12 3v18"/>
+          </svg>
+          <span class="btn-text">GAME HUD</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Viewport Content -->
+  <main class="app-viewport" id="main-content">
+
+    <!-- ====================================================================
+         VIEW: WORKS (HOMEPAGE)
+         Directly focuses on Deep Tanush, Game Designer, Selected Works
+         ==================================================================== -->
+    <section id="works-view" class="view-panel" aria-label="Game Design Projects">
+      <header class="home-header">
+        <div class="header-pre-title">
+          <span class="game-gem-pip">◆</span>
+          <span>PORTFOLIO COMPENDIUM</span>
+        </div>
+        <h1 class="designer-name-title" data-bind="designerName">DEEP TANUSH</h1>
+        <div class="designer-role-subtitle">
+          <span data-bind="designerTitle">GAME DESIGNER</span>
+          <span class="role-divider-line"></span>
+        </div>
+        <div class="selected-works-label">
+          <span class="selected-works-text">Selected Works</span>
+        </div>
+      </header>
+
+      <!-- Project Showcase Region -->
+      <div id="projects-grid" class="projects-region" role="region" aria-label="Projects Showcase">
+        <!-- Rendered dynamically from data.js -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW: DEDICATED PROJECT DETAIL PAGE
+         ==================================================================== -->
+    <article id="project-detail-view" class="view-panel hidden" aria-label="Project Case Study">
+      <!-- Injected dynamically matching required structure -->
+    </article>
+
+    <!-- ====================================================================
+         VIEW: ABOUT (Concise, Game Designer Focus)
+         ==================================================================== -->
+    <section id="about-view" class="view-panel hidden" aria-label="About Deep Tanush">
+      <div class="compact-view-container">
+        <div class="view-section-header">
+          <div class="header-pre-title">
+            <span class="game-gem-pip">◆</span>
+            <span>DESIGN PROFILE</span>
+          </div>
+          <h2 class="view-section-title">ABOUT</h2>
+        </div>
+
+        <p class="about-intro-lead" data-bind="aboutShort">
+          I am a Game Designer specializing in 3D puzzle systems, environmental storytelling, and player-centric mechanic design. From spatial drone exploration to multi-stage logic contraptions, I bridge narrative tension with tactile gameplay loops.
+        </p>
+
+        <div class="about-disciplines">
+          <div class="discipline-box">
+            <div class="box-gem">◆</div>
+            <h3 class="discipline-title">SYSTEMS & MECHANICS</h3>
+            <p class="discipline-desc">Spatial drone controls, interactive puzzle decryptors, chemical synthesis loops, and input feel.</p>
+          </div>
+          <div class="discipline-box">
+            <div class="box-gem">◆</div>
+            <h3 class="discipline-title">LEVEL DESIGN</h3>
+            <p class="discipline-desc">Chronological chamber architectures, sightline management, spatial pacing, and environmental affordances.</p>
+          </div>
+          <div class="discipline-box">
+            <div class="box-gem">◆</div>
+            <h3 class="discipline-title">TECHNICAL PIPELINE</h3>
+            <p class="discipline-desc">Prototyping in Unity (C#) and Unreal Engine, bespoke 3D asset integration without generative AI, and playtest telemetry.</p>
+          </div>
+        </div>
+
+        <div class="about-links-row">
+          <a href="DeepTanush_Resume.pdf" download="DeepTanush_Resume.pdf" class="game-action-btn primary">
+            <span>DOWNLOAD RESUME (1-PAGE PDF)</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+          </a>
+          <button class="game-action-btn secondary nav-to-resume-btn" data-tab="resume">
+            <span>VIEW RESUME</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <a href="https://itiskiruhere.itch.io/ui" target="_blank" rel="noopener" class="game-action-btn secondary">
+            <span>VIEW ON ITCH.IO</span>
+            <span class="btn-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW: RESUME (Upgraded Game Designer Dossier)
+         ==================================================================== -->
+    <section id="resume-view" class="view-panel hidden" aria-label="Game Designer Resume">
+      <div class="resume-view-container">
+        
+        <!-- Top Dossier Command Bar -->
+        <div class="resume-dossier-header">
+          <div class="dossier-titles">
+            <div class="header-pre-title">
+              <span class="game-gem-pip">◆</span>
+              <span>CANDIDATE DOSSIER // RESUME</span>
+            </div>
+            <h2 class="dossier-name">DEEP TANUSH</h2>
+            <div class="dossier-role-row">
+              <span class="dossier-role">GAME DESIGNER</span>
+              <span class="hud-divider">/</span>
+              <span class="dossier-role">LEVEL DESIGNER</span>
+              <span class="dossier-status-badge">AVAILABLE FOR 2026 ROLES</span>
+            </div>
+          </div>
+
+          <!-- Direct Resume Actions: Download PDF & Open Print View -->
+          <div class="resume-actions-bar">
+            <a href="DeepTanush_Resume.pdf" download="DeepTanush_Resume.pdf" class="game-action-btn primary" title="Download Official 1-Page PDF Resume">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+              </svg>
+              <span>DOWNLOAD RESUME (1-PAGE PDF)</span>
+            </a>
+            <a href="resume.html" target="_blank" rel="noopener" class="game-action-btn secondary" title="Open Clean Print-Ready Page">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/>
+              </svg>
+              <span>PRINT VIEW (1 PAGE)</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Contact Specs Grid -->
+        <div class="resume-specs-bar">
+          <div class="resume-spec-cell">
+            <span class="spec-cell-label">DIRECT EMAIL</span>
+            <a href="mailto:deeptanush55@gmail.com" class="spec-cell-val">deeptanush55@gmail.com</a>
+          </div>
+          <div class="resume-spec-cell">
+            <span class="spec-cell-label">PHONE</span>
+            <a href="tel:+919848325520" class="spec-cell-val">+91 9848325520</a>
+          </div>
+          <div class="resume-spec-cell">
+            <span class="spec-cell-label">LOCATION</span>
+            <span class="spec-cell-val">Hyderabad, India (Remote / Relocation)</span>
+          </div>
+          <div class="resume-spec-cell">
+            <span class="spec-cell-label">FEATURED GAME</span>
+            <a href="https://itiskiruhere.itch.io/ui" target="_blank" rel="noopener" class="spec-cell-val">itch.io/ui</a>
+          </div>
+        </div>
+
+        <!-- Section 1: Professional Summary -->
+        <div class="resume-card-block">
+          <div class="resume-block-header">
+            <span class="block-gem">◆</span>
+            <h3 class="block-title">01 // PROFESSIONAL SUMMARY</h3>
+          </div>
+          <p class="resume-summary-text">
+            Creative and systems-driven Game Designer pursuing a Bachelor of Arts in Game Design at Backstage Pass Institute of Gaming. Experienced in architecting 3D spatial puzzles, mechanic prototyping in Unity (C#), and crafting atmospheric environmental storytelling. Co-designer of <strong>UI (Unwanted Internship)</strong>, a published multi-timeline mystery on itch.io. Dedicated to tight player feedback loops, clear cognitive affordances, iterative playtesting, and high-standard bespoke craftsmanship without generative AI.
+          </p>
+        </div>
+
+        <!-- Section 2: Core Competencies -->
+        <div class="resume-card-block">
+          <div class="resume-block-header">
+            <span class="block-gem">◆</span>
+            <h3 class="block-title">02 // CORE COMPETENCIES & DESIGN SKILLS</h3>
+          </div>
+          <div class="resume-skills-matrix">
+            <div class="matrix-card">
+              <h4 class="matrix-category-title"><span class="pip">◆</span> GAME & SYSTEMS DESIGN</h4>
+              <ul class="matrix-items-list">
+                <li>Core Mechanic Prototyping & Gameplay Loops</li>
+                <li>3D Puzzle Progression & Logic Dependency Graphs</li>
+                <li>Player Affordance & Visual Signifiers</li>
+                <li>Difficulty Balancing & Cognitive Pacing</li>
+                <li>Playtest Feedback Analysis & Telemetry</li>
+              </ul>
+            </div>
+            <div class="matrix-card">
+              <h4 class="matrix-category-title"><span class="pip">◆</span> LEVEL & SPATIAL DESIGN</h4>
+              <ul class="matrix-items-list">
+                <li>3D Spatial Layout & Architectural Grayboxing</li>
+                <li>Sightline Staging & Player Funneling</li>
+                <li>Environmental Narrative & Visual Landmarks</li>
+                <li>Hub-and-Spoke Chronological Level Architectures</li>
+                <li>Spatial Pacing & Traversal Dynamics</li>
+              </ul>
+            </div>
+            <div class="matrix-card">
+              <h4 class="matrix-category-title"><span class="pip">◆</span> ENGINES & TECHNICAL TOOLS</h4>
+              <ul class="matrix-items-list">
+                <li>Unity Engine (C# Scripting, Physics, Cinemachine)</li>
+                <li>Unreal Engine 5 (Spatial Blocking, Greybox Layout)</li>
+                <li>Blender (Level Metric Blocking & Greybox Props)</li>
+                <li>Version Control (Git)</li>
+              </ul>
+            </div>
+            <div class="matrix-card">
+              <h4 class="matrix-category-title"><span class="pip">◆</span> DOCUMENTATION & PROCESS</h4>
+              <ul class="matrix-items-list">
+                <li>Game Design Documents (GDD) & Systems One-Pagers</li>
+                <li>Puzzle Logic Schematics & Telemetry Logs</li>
+                <li>Cross-Disciplinary Team Coordination</li>
+                <li>Agile Sprint & Rapid Jam Prototyping</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Shipped Game Project -->
+        <div class="resume-card-block">
+          <div class="resume-block-header">
+            <span class="block-gem">◆</span>
+            <h3 class="block-title">03 // FEATURED SHIPPED GAME</h3>
+          </div>
+          <div class="resume-project-card">
+            <div class="project-card-top">
+              <div class="project-name-group">
+                <h4 class="project-name-text">UI (Unwanted Internship)</h4>
+                <span class="project-role-text">Game Designer & Level Designer</span>
+              </div>
+              <div class="project-badges-group">
+                <span class="gold-badge">RELEASED ON ITCH.IO</span>
+                <span class="engine-badge">UNITY 3D</span>
+                <span class="status-badge">SHIPPED PC RELEASE</span>
+              </div>
+            </div>
+
+            <p class="project-summary-sub">
+              A 3D sci-fi puzzle mystery of logic, mechanics, and drone exploration set inside three museum timelines.
+            </p>
+
+            <ul class="resume-bullet-list">
+              <li><strong>Multi-Timeline Progression:</strong> Designed the overarching puzzle progression architecture across 3 distinct chronological eras (Retro Bunker, Chemistry Academy, Cybernetic Core) connected via a central elevator hub.</li>
+              <li><strong>Aerial Drone Reconnaissance:</strong> Conceptualized and tuned the autonomous aerial AI Drone mechanic (ALP-07), giving players vertical exploration capability to scout inaccessible ducts and inspect environmental clues.</li>
+              <li><strong>Meta UI Deduction Puzzles:</strong> Authored in-world puzzle logic, including a clever meta puzzle where players reference visual UI components to deduce physical solutions.</li>
+              <li><strong>Sightline Staging & Level Layout:</strong> Greyboxed and staged level geometry across all 3 chambers, directing player sightlines to key interactables upon entry while preserving mystery.</li>
+              <li><strong>Playtest Telemetry & Balancing:</strong> Conducted iterative blind playtests to tune difficulty curves, ensuring cognitive tension resolves into rewarding eureka moments.</li>
+              <li><strong>Bespoke Asset Craftsmanship:</strong> Collaborated within a 5-member team maintaining a 90% bespoke 3D asset pipeline with zero generative AI.</li>
+            </ul>
+
+            <div class="project-link-shelf">
+              <a href="https://itiskiruhere.itch.io/ui" target="_blank" rel="noopener" class="game-action-btn secondary">
+                <span>PLAY ON ITCH.IO</span>
+                <span class="btn-arrow">↗</span>
+              </a>
+              <a href="https://www.youtube.com/watch?v=KvcdGrKK1Cc" target="_blank" rel="noopener" class="game-action-btn secondary">
+                <span>WATCH GAMEPLAY TRAILER</span>
+                <span class="btn-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Education & Section 5: Languages (Dual Grid) -->
+        <div class="resume-dual-grid">
+          
+          <!-- Education Column -->
+          <div class="resume-card-block">
+            <div class="resume-block-header">
+              <span class="block-gem">◆</span>
+              <h3 class="block-title">04 // EDUCATION</h3>
+            </div>
+            
+            <div class="resume-edu-list">
+              <div class="resume-edu-entry">
+                <div class="edu-entry-top">
+                  <h4 class="edu-school-name">Backstage Pass Institute of Gaming and Technology</h4>
+                  <span class="edu-year-tag">2023 – 2027</span>
+                </div>
+                <div class="edu-degree-title">Bachelor of Arts in Game Design</div>
+                <p class="edu-desc-text">Curriculum focused on game systems, mechanics architecture, 3D spatial level design, Unity prototyping, and player psychology.</p>
+              </div>
+
+              <div class="resume-edu-entry">
+                <div class="edu-entry-top">
+                  <h4 class="edu-school-name">Sri Chaitanya Junior College</h4>
+                  <span class="edu-year-tag">2020 – 2023</span>
+                </div>
+                <div class="edu-degree-title">Higher Secondary Education (Intermediate)</div>
+                <p class="edu-desc-text">Core foundation in Mathematics, Physics, and Chemistry analytical problem-solving.</p>
+              </div>
+
+              <div class="resume-edu-entry">
+                <div class="edu-entry-top">
+                  <h4 class="edu-school-name">Faust High School</h4>
+                  <span class="edu-year-tag">2007 – 2020</span>
+                </div>
+                <div class="edu-degree-title">Secondary School Certificate (SSC)</div>
+                <p class="edu-desc-text">Foundational education and creative studies.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Languages Column -->
+          <div class="resume-card-block">
+            <div class="resume-block-header">
+              <span class="block-gem">◆</span>
+              <h3 class="block-title">05 // LANGUAGES</h3>
+            </div>
+            
+            <div class="resume-lang-list">
+              <div class="resume-lang-box">
+                <div class="lang-box-name">English</div>
+                <div class="lang-box-proficiency">Professional Working Proficiency</div>
+              </div>
+              <div class="resume-lang-box">
+                <div class="lang-box-name">Telugu</div>
+                <div class="lang-box-proficiency">Native / Bilingual</div>
+              </div>
+              <div class="resume-lang-box">
+                <div class="lang-box-name">Hindi</div>
+                <div class="lang-box-proficiency">Professional Working Proficiency</div>
+              </div>
+            </div>
+
+            <!-- Fast Contact Callout -->
+            <div class="resume-contact-callout">
+              <span class="callout-pip">◆</span>
+              <div>
+                <h5 class="callout-heading">READY TO COLLABORATE</h5>
+                <p class="callout-body">Available for game design, level design, and mechanics prototyping positions.</p>
+                <a href="mailto:deeptanush55@gmail.com" class="callout-email-btn">
+                  <span>deeptanush55@gmail.com</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW: CONTACT (Direct & Professional - No LinkedIn / GitHub)
+         ==================================================================== -->
+    <section id="contact-view" class="view-panel hidden" aria-label="Contact Information">
+      <div class="compact-view-container">
+        <div class="view-section-header">
+          <div class="header-pre-title">
+            <span class="game-gem-pip">◆</span>
+            <span>TRANSMISSION</span>
+          </div>
+          <h2 class="view-section-title">CONTACT</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div>
+              <span class="contact-card-label">DIRECT INQUIRY</span>
+              <a href="mailto:deeptanush55@gmail.com" class="contact-primary-email" id="contact-email-link">deeptanush55@gmail.com</a>
+              <p class="section-body-text" style="font-size: 0.92rem; margin-bottom: 1.5rem;">
+                Open to full-time game design roles, 3D puzzle systems design, and level design opportunities worldwide.
+              </p>
+            </div>
+            <div class="contact-buttons-stack">
+              <button class="game-action-btn primary" id="btn-copy-email">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span>COPY EMAIL ADDRESS</span>
+              </button>
+              <a href="tel:+919848325520" class="game-action-btn secondary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span>CALL: +91 9848325520</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-card-label" style="margin-bottom: 1rem;">VERIFIED NETWORKS & CHANNELS</span>
+            <ul class="contact-socials-list">
+              <li>
+                <a href="https://itiskiruhere.itch.io/ui" class="social-link-item" target="_blank" rel="noopener">
+                  <span>ITCH.IO (UI: UNWANTED INTERNSHIP)</span>
+                  <span class="arrow-pip">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://deeptanush.itch.io" class="social-link-item" target="_blank" rel="noopener">
+                  <span>ITCH.IO PROFILE (DEEP TANUSH)</span>
+                  <span class="arrow-pip">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="tel:+919848325520" class="social-link-item">
+                  <span>PHONE: +91 9848325520</span>
+                  <span class="arrow-pip">✆</span>
+                </a>
+              </li>
+              <li>
+                <a href="DeepTanush_Resume.pdf" download="DeepTanush_Resume.pdf" class="social-link-item">
+                  <span>OFFICIAL RESUME (1-PAGE PDF)</span>
+                  <span class="arrow-pip">↓</span>
+                </a>
+              </li>
+              <li>
+                <a href="resume.html" target="_blank" rel="noopener" class="social-link-item">
+                  <span>PRINT-READY RESUME (VIEW)</span>
+                  <span class="arrow-pip">↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       INTERACTIVE LIGHTBOX MODAL
+       ==================================================================== -->
+  <div id="lightbox-modal" class="lightbox-modal hidden" role="dialog" aria-modal="true" aria-label="Image Inspector">
+    <div class="lightbox-dialog">
+      <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Close Inspector">
+        <span>CLOSE [ESC]</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <img id="lightbox-img" class="lightbox-image" src="" alt="Full Resolution Inspection" />
+      <p id="lightbox-caption" class="lightbox-caption-text"></p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/canvas-bg.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
